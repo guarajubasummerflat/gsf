@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apartamento de Verão 134 · Guarajuba Summer Flat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand:    #F5EFE0;
+    --ocean:   #1A6B7C;
+    --wave:    #2E9BB5;
+    --coral:   #E07B54;
+    --dark:    #1C2B2D;
+    --mid:     #4A6065;
+    --light:   #EAF4F7;
+    --white:   #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--sand);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100svh;
+    min-height: 580px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    overflow: hidden;
+  }
+
+  .hero-slides {
+    position: absolute; inset: 0;
+  }
+
+  .hero-slides img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .hero-slides img.active { opacity: 1; }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(28,43,45,0.25) 0%, rgba(28,43,45,0.65) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem 2rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    align-self: end;
+  }
+
+  .hero-eyebrow {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--wave);
+    margin-bottom: .75rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: #B8E4EE;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,.82);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .badge {
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.3);
+    color: var(--white);
+    padding: .35rem .85rem;
+    border-radius: 2rem;
+    font-size: .8rem;
+    font-weight: 500;
+  }
+
+  .badge.star {
+    background: var(--coral);
+    border-color: var(--coral);
+  }
+
+  .hero-dots {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: .5rem;
+    z-index: 3;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.4);
+    cursor: pointer;
+    transition: background .3s;
+  }
+
+  .dot.active { background: var(--white); }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--wave);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── GALERIA ── */
+  .gallery-bg { background: var(--dark); }
+
+  .gallery-bg .section-label { color: var(--wave); }
+
+  .gallery-bg .section-title { color: var(--white); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: .6rem;
+    margin-top: 2rem;
+  }
+
+  .gallery-grid .g-main {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: .75rem;
+    background: #2a3e40;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+  }
+
+  .g-main { aspect-ratio: unset; min-height: 320px; }
+
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.04); }
+
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    color: rgba(255,255,255,.35);
+    font-size: .8rem;
+    min-height: 140px;
+  }
+
+  .gallery-placeholder .ph-icon { font-size: 2rem; opacity: .4; }
+
+  .gallery-ver-mais {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: 1.5rem;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--wave);
+    background: none;
+    border: 1.5px solid var(--wave);
+    padding: .6rem 1.4rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+
+  .gallery-ver-mais:hover { background: var(--wave); color: var(--white); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: .75rem;
+    object-fit: contain;
+    box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1rem; right: 1.25rem;
+    font-size: 2rem;
+    color: var(--white);
+    cursor: pointer;
+    opacity: .7;
+    background: none;
+    border: none;
+    line-height: 1;
+  }
+
+  .lightbox-close:hover { opacity: 1; }
+
+  .lightbox-nav {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .lb-btn {
+    background: rgba(255,255,255,.15);
+    border: none;
+    color: var(--white);
+    font-size: 1.4rem;
+    padding: .5rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .lb-btn:hover { background: rgba(255,255,255,.3); }
+
+  .lightbox-counter {
+    color: rgba(255,255,255,.5);
+    font-size: .82rem;
+    margin-top: .5rem;
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .gallery-grid .g-main {
+      grid-column: 1 / 3;
+      grid-row: auto;
+      min-height: 220px;
+    }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(26,107,124,.15);
+    margin: 0;
+  }
+
+  /* ── HIGHLIGHTS ── */
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .highlight-card {
+    background: var(--white);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(26,107,124,.08);
+  }
+
+  .highlight-icon {
+    font-size: 1.8rem;
+    margin-bottom: .75rem;
+  }
+
+  .highlight-card h3 {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: .3rem;
+  }
+
+  .highlight-card p {
+    font-size: .82rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* ── AMENITIES ── */
+  .amenities-bg {
+    background: var(--light);
+  }
+
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: .75rem;
+    margin-top: 2rem;
+  }
+
+  .amenity {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .88rem;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .amenity-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  }
+
+  /* ── RATING ── */
+  .rating-strip {
+    background: var(--ocean);
+    color: var(--white);
+  }
+
+  .rating-strip .section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .rating-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--white);
+  }
+
+  .rating-big span {
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    opacity: .7;
+    display: block;
+    margin-top: .3rem;
+  }
+
+  .rating-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem 2rem;
+    flex: 1;
+    min-width: 260px;
+  }
+
+  .rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+    font-size: .85rem;
+  }
+
+  .rating-row label { opacity: .8; }
+
+  .rating-bar-wrap {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .rating-bar {
+    height: 100%;
+    background: #B8E4EE;
+    border-radius: 2px;
+  }
+
+  .rating-val { font-weight: 600; font-size: .82rem; }
+
+  .rating-badge {
+    background: var(--coral);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: .75rem;
+    text-align: center;
+    min-width: 140px;
+  }
+
+  .rating-badge .rb-num { font-size: 1.8rem; font-weight: 700; }
+  .rating-badge .rb-label { font-size: .75rem; opacity: .85; margin-top: .2rem; }
+
+  /* ── RULES ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    font-size: .88rem;
+    line-height: 1.5;
+  }
+
+  .rule-item .ri-icon {
+    font-size: 1.1rem;
+    margin-top: .1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--dark);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .cta-section .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .cta-section .section-label { color: var(--wave); }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .cta-sub {
+    color: rgba(255,255,255,.6);
+    font-size: .95rem;
+    max-width: 420px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .9rem 1.8rem;
+    border-radius: 3rem;
+    font-size: .95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    cursor: pointer;
+  }
+
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: var(--white);
+  }
+
+  .btn-airbnb {
+    background: #FF5A5F;
+    color: var(--white);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid rgba(255,255,255,.3);
+  }
+
+  /* ── CONTACT FORM ── */
+  .form-wrap {
+    background: var(--white);
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    max-width: 560px;
+    margin: 3rem auto 0;
+    box-shadow: 0 4px 24px rgba(0,0,0,.2);
+    text-align: left;
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-grid .full { grid-column: 1 / -1; }
+
+  label {
+    display: block;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--mid);
+    margin-bottom: .3rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 1.5px solid #DDE6E8;
+    border-radius: .6rem;
+    font-size: .92rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background: var(--white);
+    transition: border-color .2s;
+    outline: none;
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--wave); }
+
+  textarea { resize: vertical; min-height: 90px; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--ocean);
+    color: var(--white);
+    border: none;
+    border-radius: .6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background .2s, transform .15s;
+  }
+
+  .btn-submit:hover { background: var(--wave); transform: translateY(-1px); }
+
+  .form-note {
+    font-size: .78rem;
+    color: var(--mid);
+    margin-top: .75rem;
+    text-align: center;
+  }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    color: var(--ocean);
+  }
+
+  .success-msg .check { font-size: 2.5rem; margin-bottom: .5rem; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: .5rem; }
+  .success-msg p { font-size: .88rem; color: var(--mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111C1E;
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 2rem;
+    font-size: .8rem;
+  }
+
+  footer a { color: var(--wave); text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background .3s, backdrop-filter .3s;
+  }
+
+  nav.scrolled {
+    background: rgba(28,43,45,.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    background: var(--coral);
+    color: var(--white);
+    padding: .5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: .83rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+
+  .nav-cta:hover { opacity: .85; }
+
+  /* ── LOCATION ── */
+  .location-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .loc-item {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .88rem;
+    color: var(--mid);
+  }
+
+  .loc-item strong { color: var(--dark); }
+
+  .map-placeholder {
+    margin-top: 2rem;
+    background: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(26,107,124,.1);
+  }
+
+  .map-placeholder iframe {
+    width: 100%;
+    height: 320px;
+    border: none;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid .full { grid-column: 1; }
+    .rating-cats { grid-template-columns: 1fr; }
+    .hero-content { padding: 2rem 1.25rem 1.5rem; }
+    .section { padding: 3rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Guarajuba Summer Flat</a>
+  <a href="#reservar" class="nav-cta">Reservar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides" id="slides">
+    <img src="https://a0.muscache.com/im/pictures/miso/Hosting-51670446/original/7fb8e425-e151-45c7-8584-7bc9ac362ba8.jpeg" alt="Flat Guarajuba" class="active">
+    <img src="https://a0.muscache.com/im/pictures/miso/Hosting-51670446/original/7c551b9a-201b-4bbc-a6e5-9294fbd2957d.jpeg" alt="Flat Guarajuba">
+    <img src="https://a0.muscache.com/im/pictures/miso/Hosting-51670446/original/a7bf562e-b6f1-47c3-9d83-acbe4784806b.jpeg" alt="Flat Guarajuba">
+    <img src="https://a0.muscache.com/im/pictures/miso/Hosting-51670446/original/2d380148-be84-4739-88d5-ca4867238061.jpeg" alt="Flat Guarajuba">
+    <img src="https://a0.muscache.com/im/pictures/miso/Hosting-51670446/original/c674d2b9-1480-47fe-91da-a4919ab8e8d8.jpeg" alt="Flat Guarajuba">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Guarajuba · Bahia · Brasil</p>
+    <h1 class="hero-title">O seu refúgio a<br><em>5 minutos da praia</em> em Guarajuba</h1>
+    <p class="hero-sub">Flat recém-reformado, aconchegante e bem localizado — a 5 minutos a pé da praia, restaurantes e comércio.</p>
+    <div class="hero-badges">
+      <span class="badge star">⭐ 4,92 · Top 5% no Airbnb</span>
+      <span class="badge">🏊 Piscina</span>
+      <span class="badge">🚗 Estacionamento</span>
+      <span class="badge">📶 Wi-Fi</span>
+      <span class="badge">👨‍👩‍👧 Até 5 hóspedes</span>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="dots"></div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section>
+  <div class="section">
+    <p class="section-label">O espaço</p>
+    <h2 class="section-title">Conforto e tranquilidade<br>para sua família ou grupo</h2>
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-icon">🛏️</div>
+        <h3>1 Quarto + Sala</h3>
+        <p>Cama de casal e cama de solteiro no quarto. Sofá-cama em L (2 pessoas) e cama infantil na sala.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🔇</div>
+        <h3>Janela com isolamento acústico</h3>
+        <p>Isolamento acústico renovado para garantir noites mais silenciosas e tranquilas.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🏖️</div>
+        <h3>Perto de tudo</h3>
+        <p>A 5 minutos a pé da praia, e perto de mercadinhos, farmácia, praça central e restaurantes.</p>
+      </div>
+      <div class="highlight-card">
+        <div class="highlight-icon">🔑</div>
+        <h3>Self check-in</h3>
+        <p>Entrada facilitada com auxílio da portaria 24h do condomínio. Sem complicação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GALERIA -->
+<section class="gallery-bg">
+  <div class="section">
+    <p class="section-label">Galeria de fotos</p>
+    <h2 class="section-title">Conheça o flat por dentro</h2>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Foto principal -->
+      <div class="gallery-item g-main" data-index="0">
+        <div class="gallery-placeholder">
+          <span class="ph-icon">📷</span>
+          <span>Foto em breve</span>
+        </div>
+      </div>
+      <!-- Fotos menores -->
+      <div class="gallery-item" data-index="1">
+        <div class="gallery-placeholder">
+          <span class="ph-icon">📷</span>
+          <span>Foto em breve</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-index="2">
+        <div class="gallery-placeholder">
+          <span class="ph-icon">📷</span>
+          <span>Foto em breve</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-index="3">
+        <div class="gallery-placeholder">
+          <span class="ph-icon">📷</span>
+          <span>Foto em breve</span>
+        </div>
+      </div>
+      <div class="gallery-item" data-index="4">
+        <div class="gallery-placeholder">
+          <span class="ph-icon">📷</span>
+          <span>Foto em breve</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://www.airbnb.com.br/rooms/51670446" target="_blank" class="gallery-ver-mais">
+      🏠 Ver todas as fotos no Airbnb
+    </a>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt="Foto do flat">
+  <div class="lightbox-nav">
+    <button class="lb-btn" id="lbPrev">&#8592;</button>
+    <button class="lb-btn" id="lbNext">&#8594;</button>
+  </div>
+  <p class="lightbox-counter" id="lbCounter"></p>
+</div>
+
+<hr class="divider">
+
+<!-- AMENITIES -->
+<section class="amenities-bg">
+  <div class="section">
+    <p class="section-label">Comodidades</p>
+    <h2 class="section-title">O que você vai encontrar</h2>
+    <div class="amenities-grid">
+      <div class="amenity"><span class="amenity-icon">📶</span> Wi-Fi</div>
+      <div class="amenity"><span class="amenity-icon">🏊</span> Piscina compartilhada</div>
+      <div class="amenity"><span class="amenity-icon">🍳</span> Cozinha equipada</div>
+      <div class="amenity"><span class="amenity-icon">🚗</span> Vaga de estacionamento</div>
+      <div class="amenity"><span class="amenity-icon">🔥</span> Churrasqueira*</div>
+      <div class="amenity"><span class="amenity-icon">🛡️</span> Portaria 24h</div>
+      <div class="amenity"><span class="amenity-icon">🧸</span> Parquinho infantil</div>
+      <div class="amenity"><span class="amenity-icon">🏖️</span> Bem próximo à praia</div>
+      <div class="amenity"><span class="amenity-icon">🛁</span> Roupa de cama e banho</div>
+      <div class="amenity"><span class="amenity-icon">🔇</span> Janela com isolamento acústico</div>
+      <div class="amenity"><span class="amenity-icon">🧴</span> Utensílios básicos</div>
+      <div class="amenity"><span class="amenity-icon">❄️</span> Ar-condicionado</div>
+    </div>
+    <p style="font-size:.78rem; color:var(--mid); margin-top:1.5rem;">* Uso da churrasqueira mediante reserva e pagamento de taxa ao condomínio.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- RATING -->
+<section class="rating-strip">
+  <div class="section">
+    <div style="margin-bottom:1rem">
+      <p class="section-label" style="color:#B8E4EE">Avaliações dos hóspedes</p>
+      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.4rem,3vw,2rem); color:var(--white); margin-bottom:0">108 avaliações verificadas no Airbnb</h2>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center; margin-top:2rem;">
+      <div class="rating-big">4,92<span>de 5 estrelas</span></div>
+      <div class="rating-cats">
+        <div class="rating-row"><label>Limpeza</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:100%"></div></div><span class="rating-val">5,0</span></div>
+        <div class="rating-row"><label>Exatidão</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:100%"></div></div><span class="rating-val">5,0</span></div>
+        <div class="rating-row"><label>Check-in</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:98%"></div></div><span class="rating-val">4,9</span></div>
+        <div class="rating-row"><label>Comunicação</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:98%"></div></div><span class="rating-val">4,9</span></div>
+        <div class="rating-row"><label>Localização</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:98%"></div></div><span class="rating-val">4,9</span></div>
+        <div class="rating-row"><label>Custo-benefício</label><div class="rating-bar-wrap"><div class="rating-bar" style="width:96%"></div></div><span class="rating-val">4,8</span></div>
+      </div>
+      <div class="rating-badge">
+        <div class="rb-num">Top 5%</div>
+        <div class="rb-label">dos anúncios<br>no Airbnb</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section>
+  <div class="section">
+    <p class="section-label">Regras e informações</p>
+    <h2 class="section-title">Para uma estadia tranquila</h2>
+    <div class="rules-grid">
+      <div class="rule-item"><span class="ri-icon">🕑</span><div>Check-in a partir das <strong>14h00</strong></div></div>
+      <div class="rule-item"><span class="ri-icon">🕙</span><div>Checkout até as <strong>11h00</strong></div></div>
+      <div class="rule-item"><span class="ri-icon">👥</span><div>Máximo de <strong>5 hóspedes</strong> (adultos + crianças + bebês)</div></div>
+      <div class="rule-item"><span class="ri-icon">🚭</span><div><strong>Proibido fumar</strong> dentro do apartamento</div></div>
+      <div class="rule-item"><span class="ri-icon">🔒</span><div>Visitas não permitidas quando o limite de hóspedes for atingido</div></div>
+      <div class="rule-item"><span class="ri-icon">📋</span><div>Regras do condomínio informadas na chegada</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- LOCATION -->
+<section class="amenities-bg">
+  <div class="section">
+    <p class="section-label">Localização</p>
+    <h2 class="section-title">Guarajuba, Bahia</h2>
+    <p style="color:var(--mid); line-height:1.7; max-width:560px;">Uma das praias mais belas do litoral norte da Bahia, famosa pelas águas calmas e cristalinas, coqueirais e infraestrutura completa para famílias.</p>
+    <div class="location-info">
+      <div class="loc-item">🏖️ <strong>Praia</strong> — 5 min a pé</div>
+      <div class="loc-item">🛒 <strong>Mercadinhos</strong> — próximos</div>
+      <div class="loc-item">💊 <strong>Farmácia</strong> — próxima</div>
+      <div class="loc-item">🍽️ <strong>Restaurantes</strong> — na vizinhança</div>
+      <div class="loc-item">🎡 <strong>Praça central</strong> — a poucos metros</div>
+    </div>
+    <div class="map-placeholder">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15266.09!2d-38.0436!3d-12.5523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x716128c0c!2sGuarajuba%2C+Bahia!5e0!3m2!1spt-BR!2sbr!4v1"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="reservar">
+  <div class="section">
+    <p class="section-label">Reserve agora</p>
+    <h2 class="cta-title">Garanta a sua estadia</h2>
+    <p class="cta-sub">O preço varia conforme o período e a quantidade de dias. Entre em contato para receber uma proposta personalizada.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/5571999799915?text=Ol%C3%A1!%20Tenho%20interesse%20em%20reservar%20o%20Flat%20em%20Guarajuba.%20Pode%20me%20passar%20mais%20informa%C3%A7%C3%B5es%3F" target="_blank" class="btn btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.airbnb.com.br/rooms/51670446" target="_blank" class="btn btn-airbnb">
+        🏠 Ver no Airbnb
+      </a>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-wrap">
+      <form id="reserva-form" name="reserva" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="reserva">
+        <input type="hidden" name="subject" value="Nova mensagem - Flat Guarajuba (%{nome})">
+        <p style="position:absolute; left:-9999px;" aria-hidden="true">
+          <label>Não preencha este campo: <input name="bot-field"></label>
+        </p>
+        <div id="form-content">
+          <h3 class="form-title">Ou envie uma mensagem</h3>
+          <div class="form-grid">
+            <div>
+              <label>Nome</label>
+              <input type="text" id="f-nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div>
+              <label>WhatsApp</label>
+              <input type="tel" id="f-tel" name="telefone" placeholder="(71) 9xxxx-xxxx">
+            </div>
+            <div>
+              <label>Check-in</label>
+              <input type="date" id="f-in" name="checkin">
+            </div>
+            <div>
+              <label>Checkout</label>
+              <input type="date" id="f-out" name="checkout">
+            </div>
+            <div>
+              <label>Nº de hóspedes</label>
+              <select id="f-guests" name="hospedes">
+                <option>1</option><option>2</option><option>3</option>
+                <option>4</option><option>5</option>
+              </select>
+            </div>
+            <div class="full">
+              <label>Mensagem (opcional)</label>
+              <textarea id="f-msg" name="mensagem" placeholder="Alguma pergunta ou pedido especial?"></textarea>
+            </div>
+          </div>
+          <button class="btn-submit" type="submit">Enviar mensagem →</button>
+          <p class="form-note" id="form-status">Sua mensagem será enviada diretamente ao anfitrião.</p>
+        </div>
+      </form>
+      <div class="success-msg" id="success">
+        <div class="check">✅</div>
+        <h3>Mensagem enviada!</h3>
+        <p>O anfitrião vai receber seus dados e entrar em contato em breve.</p>
+        <button type="button" class="btn-submit" id="btn-voltar" style="max-width:220px; margin:1.5rem auto 0;">← Voltar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 · Guarajuba Summer Flat · Apartamento 134 · Guarajuba, Bahia</p>
+  <p style="margin-top:.5rem"><a href="https://wa.me/5571999799915" target="_blank">(71) 99979-9915</a> · <a href="mailto:guarajubasummerflat@gmail.com">guarajubasummerflat@gmail.com</a> · <a href="https://www.airbnb.com.br/rooms/51670446" target="_blank">Airbnb</a></p>
+</footer>
+
+<script>
+  // GALERIA + LIGHTBOX
+  const galleryImages = [
+    // Quando você enviar as fotos, os links serão inseridos aqui assim:
+    // 'foto1.jpg', 'foto2.jpg', 'foto3.jpg', ...
+  ];
+
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lbImg');
+  const lbCounter  = document.getElementById('lbCounter');
+  let lbCur = 0;
+
+  function openLightbox(index) {
+    if (!galleryImages.length) return;
+    lbCur = index;
+    lbImg.src = galleryImages[lbCur];
+    lbCounter.textContent = (lbCur + 1) + ' / ' + galleryImages.length;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const idx = parseInt(item.dataset.index);
+      openLightbox(idx);
+    });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  document.getElementById('lbPrev').addEventListener('click', (e) => {
+    e.stopPropagation();
+    lbCur = (lbCur - 1 + galleryImages.length) % galleryImages.length;
+    lbImg.src = galleryImages[lbCur];
+    lbCounter.textContent = (lbCur + 1) + ' / ' + galleryImages.length;
+  });
+
+  document.getElementById('lbNext').addEventListener('click', (e) => {
+    e.stopPropagation();
+    lbCur = (lbCur + 1) % galleryImages.length;
+    lbImg.src = galleryImages[lbCur];
+    lbCounter.textContent = (lbCur + 1) + ' / ' + galleryImages.length;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft')  document.getElementById('lbPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  });
+
+  // NAV scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // SLIDESHOW
+  const slides = document.querySelectorAll('#slides img');
+  const dotsWrap = document.getElementById('dots');
+  let cur = 0;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dotsWrap.children[cur].classList.remove('active');
+    cur = n;
+    slides[cur].classList.add('active');
+    dotsWrap.children[cur].classList.add('active');
+  }
+
+  setInterval(() => goTo((cur + 1) % slides.length), 4500);
+
+  // FORM → Netlify Forms
+  const reservaForm = document.getElementById('reserva-form');
+  reservaForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('f-nome').value.trim();
+    if (!nome) { alert('Por favor, informe seu nome.'); return; }
+
+    const submitBtn = reservaForm.querySelector('.btn-submit');
+    const statusEl  = document.getElementById('form-status');
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Enviando...';
+
+    try {
+      const formData = new FormData(reservaForm);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (!response.ok) throw new Error('Falha no envio');
+
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } catch (err) {
+      statusEl.textContent = 'Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.';
+      submitBtn.disabled = false;
+    }
+  });
+
+  // VOLTAR → mostra o formulário novamente para enviar outra mensagem
+  document.getElementById('btn-voltar').addEventListener('click', () => {
+    reservaForm.reset();
+    document.getElementById('form-status').textContent = 'Sua mensagem será enviada diretamente ao anfitrião.';
+    reservaForm.querySelector('.btn-submit').disabled = false;
+    document.getElementById('success').style.display = 'none';
+    document.getElementById('form-content').style.display = 'block';
+  });
+</script>
+</body>
+</html>
